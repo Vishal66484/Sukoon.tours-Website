@@ -8,10 +8,10 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onSearch }) => {
   return (
-    <div className="relative h-[65vh] min-h-[600px] w-full overflow-hidden bg-[#0E1E2C]">
+    <div className="relative h-[85vh] w-full overflow-hidden bg-[#0E1E2C]">
       {/* Background Container */}
       <div className="absolute inset-0 w-full h-full z-0">
-        {/* Premium Background Video - International Destination (Dolomites / Alps - Lago di Braies) */}
+        {/* Premium Background Video */}
         <video
           autoPlay
           muted
@@ -20,25 +20,25 @@ const Hero: React.FC<HeroProps> = ({ onSearch }) => {
           className="absolute inset-0 w-full h-full object-cover scale-105"
           poster="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=2574&auto=format&fit=crop"
         >
-          {/* Cinematic International Travel Video (Lago di Braies - Italy/Alps) */}
+          {/* Cinematic International Travel Video */}
           <source src="https://videos.pexels.com/video-files/4133023/4133023-uhd_2560_1440_30fps.mp4" type="video/mp4" />
         </video>
         
-        {/* Cinematic Overlays for Maximum Text Visibility (Content Uthun Disel) */}
+        {/* Cinematic Overlays for Text Visibility */}
         <div className="absolute inset-0 bg-[#0E1E2C]/20 mix-blend-multiply"></div>
         <div className="absolute inset-0 bg-black/10"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1E2C]/60 via-transparent to-[#0E1E2C]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-[#0E1E2C]"></div>
       </div>
 
-      {/* Content Container */}
-      <div className="relative h-full max-w-[90rem] mx-auto px-6 flex flex-col items-center justify-center text-center z-10 pb-10">
+      {/* Content Container - Adjusted padding for top spacing since header is now overlay */}
+      <div className="relative h-full max-w-[90rem] mx-auto px-6 flex flex-col items-center justify-center text-center z-10 pt-20 pb-10">
         <div className="animate-fade-in-up space-y-8 flex flex-col items-center">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-2 rounded-full text-[#FFD801] text-[12px] font-black border border-white/20 shadow-2xl tracking-[0.3em] uppercase hover:bg-white/20 transition-all cursor-default">
             <Sparkles className="w-4 h-4" />
             Sukoon Tours - Luxury Awaits
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-black text-white mb-2 drop-shadow-2xl tracking-tighter leading-tight">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-2 drop-shadow-2xl tracking-tighter leading-tight">
             Experience the<br />
             <span className="text-[#FFD801]">Extraordinary</span>
           </h1>

@@ -45,7 +45,7 @@ const Achievements: React.FC = () => {
   return (
     <section className="relative bg-[#0E1E2C] py-20 px-4 overflow-hidden border-t border-white/5">
       
-      {/* World Map Background - Solid, Gray, No Blur, No Borders */}
+      {/* World Map Background - Increased Visibility */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
         <div 
           className="absolute inset-0 w-full h-full"
@@ -56,10 +56,10 @@ const Achievements: React.FC = () => {
             backgroundRepeat: 'no-repeat',
             // Cover ensures it fills the space. 
             backgroundSize: 'cover',
-            // Opacity 0.3 ensures it is clearly visible
-            opacity: 0.3, 
-            // invert(1) makes it white, brightness(0.6) turns it gray. REMOVED BLUR.
-            filter: 'invert(1) brightness(0.6)', 
+            // Increased Opacity for better visibility
+            opacity: 0.6, 
+            // Invert makes it white, brightness makes it pop against dark bg
+            filter: 'invert(1) brightness(0.8)', 
           }}
         />
       </div>

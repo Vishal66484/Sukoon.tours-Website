@@ -35,14 +35,14 @@ const TrendingCollections: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-slate-50 relative z-20 overflow-hidden">
-      <div className="max-w-[90rem] mx-auto px-6">
+    <section className="py-12 md:py-20 bg-slate-50 relative z-20 overflow-hidden">
+      <div className="max-w-[90rem] mx-auto px-4 md:px-6">
         
         {/* Header - Unified Style with Website */}
-        <div className="flex justify-between items-end mb-10">
+        <div className="flex justify-between items-end mb-6 md:mb-10">
           <div>
-            <span className="text-[#FFD801] font-black text-xs tracking-[0.25em] uppercase mb-3 block">Curated For You</span>
-            <h2 className="text-3xl md:text-4xl font-black text-[#0E1E2C] leading-tight">Trending Collections</h2>
+            <span className="text-[#FFD801] font-black text-[10px] md:text-xs tracking-[0.25em] uppercase mb-2 md:mb-3 block">Curated For You</span>
+            <h2 className="text-2xl md:text-4xl font-black text-[#0E1E2C] leading-tight">Trending Collections</h2>
           </div>
         </div>
 
@@ -87,44 +87,44 @@ const TrendingCollections: React.FC = () => {
           <div 
             ref={scrollContainerRef}
             onScroll={checkScroll}
-            className="flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-8 pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide"
+            className="flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-10 pb-12 -mx-4 px-4 md:mx-0 md:px-4 scrollbar-hide pt-4"
             style={{ scrollBehavior: 'smooth' }}
           >
 
-            {/* Card 1: Last Minute */}
+            {/* Card 1: Last Minute - Reduced Width on Mobile (w-[70vw]) and Padding (p-6) */}
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="flex-shrink-0 w-[85vw] md:w-[24rem] snap-center rounded-[2rem] p-8 bg-gradient-to-br from-[#fffbeb] via-[#fef3c7] to-[#fde68a] relative overflow-hidden group shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 md:ml-auto"
+              className="flex-shrink-0 w-[70vw] md:w-[24rem] snap-center rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 bg-gradient-to-br from-[#fffbeb] via-[#fef3c7] to-[#fde68a] relative overflow-hidden group shadow-[0_10px_30px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_25px_60px_-15px_rgba(251,191,36,0.6)] hover:-translate-y-2 transition-all duration-500 ease-out md:ml-auto border border-amber-100/50"
             >
               <div className="relative z-10 h-full flex flex-col">
                 <div className="flex items-center justify-between mb-4">
-                   <span className="text-[10px] font-black text-amber-900 bg-amber-500/10 px-2.5 py-1.5 rounded-lg uppercase tracking-widest border border-amber-500/20">Hot Deals</span>
-                   <Clock className="w-4 h-4 text-amber-800 opacity-60" />
+                   <span className="text-[9px] md:text-[10px] font-black text-amber-900 bg-amber-500/10 px-2 py-1 md:px-2.5 md:py-1.5 rounded-lg uppercase tracking-widest border border-amber-500/20">Hot Deals</span>
+                   <Clock className="w-3.5 h-3.5 md:w-4 md:h-4 text-amber-800 opacity-60" />
                 </div>
-                <h3 className="text-2xl font-black text-slate-900 mb-2 leading-tight">Last Minute<br/>Departures</h3>
-                <p className="text-slate-800 text-xs mb-6 leading-relaxed font-bold">
+                <h3 className="text-xl md:text-2xl font-black text-slate-900 mb-2 leading-tight">Last Minute<br/>Departures</h3>
+                <p className="text-slate-800 text-[10px] md:text-xs mb-4 md:mb-6 leading-relaxed font-bold">
                   Limited time? Checkout 100+ soon departing tours.
                 </p>
 
-                <div className="space-y-3 mb-8 bg-white/60 p-5 rounded-2xl backdrop-blur-sm border border-white/50 flex-grow shadow-inner">
+                <div className="space-y-2 md:space-y-3 mb-6 md:mb-8 bg-white/60 p-4 md:p-5 rounded-2xl backdrop-blur-sm border border-white/50 flex-grow shadow-inner">
                   {[
                     "Honeymoon Special Kerala (6D)",
                     "Best of Amritsar (4D)",
                     "Dalhousie Dharamshala (8D)",
                     "Bhubaneswar Puri Konark (6D)"
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-3 text-xs text-slate-800 border-b border-amber-900/5 last:border-0 pb-2 last:pb-0">
-                      <div className="w-1.5 h-1.5 rounded-full bg-amber-600 shrink-0" />
+                    <div key={i} className="flex items-center gap-2 md:gap-3 text-[10px] md:text-xs text-slate-800 border-b border-amber-900/5 last:border-0 pb-1.5 md:pb-2 last:pb-0">
+                      <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-amber-600 shrink-0" />
                       <span className="truncate font-bold">{item}</span>
                     </div>
                   ))}
                 </div>
 
-                <button className="w-full py-4 bg-slate-900 text-white font-black rounded-xl shadow-lg hover:bg-black hover:shadow-xl transition-all flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest group-hover:gap-3">
-                  View Departures <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                <button className="w-full py-3 md:py-4 bg-slate-900 text-white font-black rounded-xl shadow-lg hover:bg-black hover:shadow-xl transition-all flex items-center justify-center gap-2 text-[9px] md:text-[10px] uppercase tracking-widest group-hover:gap-3">
+                  View Departures <ArrowRight className="w-3 h-3 md:w-3.5 md:h-3.5 transition-transform group-hover:translate-x-1" />
                 </button>
               </div>
               <div className="absolute top-0 right-0 w-48 h-48 bg-amber-400/20 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none" />
@@ -136,33 +136,33 @@ const TrendingCollections: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.5 }}
-              className="flex-shrink-0 w-[85vw] md:w-[24rem] snap-center rounded-[2rem] p-8 bg-gradient-to-br from-[#0f766e] to-[#115e59] relative overflow-hidden group shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 text-white"
+              className="flex-shrink-0 w-[70vw] md:w-[24rem] snap-center rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 bg-gradient-to-br from-[#0f766e] to-[#115e59] relative overflow-hidden group shadow-[0_10px_30px_-10px_rgba(0,0,0,0.15)] hover:shadow-[0_25px_60px_-15px_rgba(13,148,136,0.6)] hover:-translate-y-2 transition-all duration-500 ease-out text-white border border-teal-800/30"
             >
                <div className="absolute inset-0 opacity-10 bg-[url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')] bg-cover bg-center mix-blend-overlay" />
                
               <div className="relative z-10 h-full flex flex-col">
                 <div className="flex items-center justify-between mb-4">
-                   <span className="text-[10px] font-black text-teal-100 bg-teal-900/40 px-2.5 py-1.5 rounded-lg uppercase tracking-widest border border-teal-500/30">Hassle Free</span>
-                   <Globe className="w-4 h-4 text-teal-200 opacity-60" />
+                   <span className="text-[9px] md:text-[10px] font-black text-teal-100 bg-teal-900/40 px-2 py-1 md:px-2.5 md:py-1.5 rounded-lg uppercase tracking-widest border border-teal-500/30">Hassle Free</span>
+                   <Globe className="w-3.5 h-3.5 md:w-4 md:h-4 text-teal-200 opacity-60" />
                 </div>
-                <h3 className="text-2xl font-black mb-2 leading-tight">Travel Made Easy:<br/>Visa-Free</h3>
-                <p className="text-teal-50 text-xs mb-6 leading-relaxed opacity-90 font-bold">
+                <h3 className="text-xl md:text-2xl font-black mb-2 leading-tight">Travel Made Easy:<br/>Visa-Free</h3>
+                <p className="text-teal-50 text-[10px] md:text-xs mb-4 md:mb-6 leading-relaxed opacity-90 font-bold">
                   No time for visa waits? Secure your holiday now!
                 </p>
 
-                <div className="mb-8 flex-grow relative bg-white/10 rounded-2xl p-5 border border-white/10 backdrop-blur-sm shadow-inner">
-                  <p className="text-[10px] uppercase text-teal-200 font-black mb-3 tracking-widest border-b border-white/10 pb-2">Top Picks</p>
+                <div className="mb-6 md:mb-8 flex-grow relative bg-white/10 rounded-2xl p-4 md:p-5 border border-white/10 backdrop-blur-sm shadow-inner">
+                  <p className="text-[9px] md:text-[10px] uppercase text-teal-200 font-black mb-2 md:mb-3 tracking-widest border-b border-white/10 pb-2">Top Picks</p>
                   <div className="flex flex-wrap gap-2">
                      {["Georgia", "Kazakhstan", "Morocco", "Bahrain", "Seychelles", "Singapore"].map((c, i) => (
-                       <span key={i} className="px-3 py-1.5 bg-teal-950/30 rounded-lg text-[10px] font-bold border border-teal-500/20 hover:bg-teal-900/50 transition-colors cursor-default">
+                       <span key={i} className="px-2 md:px-3 py-1 md:py-1.5 bg-teal-950/30 rounded-lg text-[9px] md:text-[10px] font-bold border border-teal-500/20 hover:bg-teal-900/50 transition-colors cursor-default">
                          {c}
                        </span>
                      ))}
                   </div>
                 </div>
 
-                <button className="w-full py-4 bg-white text-[#115e59] font-black rounded-xl shadow-lg hover:bg-teal-50 hover:shadow-xl transition-all flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest group-hover:gap-3">
-                  Explore Tours <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                <button className="w-full py-3 md:py-4 bg-white text-[#115e59] font-black rounded-xl shadow-lg hover:bg-teal-50 hover:shadow-xl transition-all flex items-center justify-center gap-2 text-[9px] md:text-[10px] uppercase tracking-widest group-hover:gap-3">
+                  Explore Tours <ArrowRight className="w-3 h-3 md:w-3.5 md:h-3.5 transition-transform group-hover:translate-x-1" />
                 </button>
               </div>
               <div className="absolute bottom-0 left-0 w-48 h-48 bg-teal-400/20 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none" />
@@ -174,34 +174,34 @@ const TrendingCollections: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="flex-shrink-0 w-[85vw] md:w-[24rem] snap-center rounded-[2rem] p-8 bg-gradient-to-br from-[#e0f2fe] via-[#bae6fd] to-[#7dd3fc] relative overflow-hidden group shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 md:mr-auto"
+              className="flex-shrink-0 w-[70vw] md:w-[24rem] snap-center rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 bg-gradient-to-br from-[#e0f2fe] via-[#bae6fd] to-[#7dd3fc] relative overflow-hidden group shadow-[0_10px_30px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_25px_60px_-15px_rgba(14,165,233,0.6)] hover:-translate-y-2 transition-all duration-500 ease-out md:mr-auto border border-sky-100/50"
             >
               <div className="relative z-10 h-full flex flex-col">
                  <div className="flex items-center justify-between mb-4">
-                   <span className="text-[10px] font-black text-sky-900 bg-sky-500/10 px-2.5 py-1.5 rounded-lg uppercase tracking-widest border border-sky-500/20">All Inclusive</span>
-                   <Plane className="w-4 h-4 text-sky-700 opacity-60" />
+                   <span className="text-[9px] md:text-[10px] font-black text-sky-900 bg-sky-500/10 px-2 py-1 md:px-2.5 md:py-1.5 rounded-lg uppercase tracking-widest border border-sky-500/20">All Inclusive</span>
+                   <Plane className="w-3.5 h-3.5 md:w-4 md:h-4 text-sky-700 opacity-60" />
                 </div>
-                <h3 className="text-2xl font-black text-slate-900 mb-2 leading-tight">Customized Holidays<br/>With Flights</h3>
-                <p className="text-slate-800 text-xs mb-6 leading-relaxed font-bold">
+                <h3 className="text-xl md:text-2xl font-black text-slate-900 mb-2 leading-tight">Customized Holidays<br/>With Flights</h3>
+                <p className="text-slate-800 text-[10px] md:text-xs mb-4 md:mb-6 leading-relaxed font-bold">
                   Curated itineraries plus flights, for an all-in-one holiday.
                 </p>
 
-                <div className="space-y-3 mb-8 bg-white/60 p-5 rounded-2xl backdrop-blur-sm border border-white/50 flex-grow shadow-inner">
+                <div className="space-y-2 md:space-y-3 mb-6 md:mb-8 bg-white/60 p-4 md:p-5 rounded-2xl backdrop-blur-sm border border-white/50 flex-grow shadow-inner">
                   {[
                     { dest: "Dubai Air Inclusive", price: "₹1,00,000" },
                     { dest: "Bali Honeymoon", price: "₹1,05,000" },
                     { dest: "Bangkok Pattaya", price: "₹67,000" },
                     { dest: "Sri Lanka Package", price: "₹75,000" }
                   ].map((item, i) => (
-                    <div key={i} className="flex justify-between items-center text-xs text-slate-800 border-b border-sky-900/5 last:border-0 pb-2 last:pb-0">
+                    <div key={i} className="flex justify-between items-center text-[10px] md:text-xs text-slate-800 border-b border-sky-900/5 last:border-0 pb-1.5 md:pb-2 last:pb-0">
                       <span className="font-bold truncate pr-2">{item.dest}</span>
-                      <span className="font-black text-slate-900 bg-white/60 px-2 py-0.5 rounded shadow-sm">{item.price}</span>
+                      <span className="font-black text-slate-900 bg-white/60 px-1.5 py-0.5 rounded shadow-sm">{item.price}</span>
                     </div>
                   ))}
                 </div>
 
-                <button className="w-full py-4 bg-slate-900 text-white font-black rounded-xl shadow-lg hover:bg-black hover:shadow-xl transition-all flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest group-hover:gap-3">
-                  View Holidays <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                <button className="w-full py-3 md:py-4 bg-slate-900 text-white font-black rounded-xl shadow-lg hover:bg-black hover:shadow-xl transition-all flex items-center justify-center gap-2 text-[9px] md:text-[10px] uppercase tracking-widest group-hover:gap-3">
+                  View Holidays <ArrowRight className="w-3 h-3 md:w-3.5 md:h-3.5 transition-transform group-hover:translate-x-1" />
                 </button>
               </div>
               <div className="absolute top-0 left-0 w-48 h-48 bg-white/40 rounded-full blur-3xl -ml-16 -mt-16 pointer-events-none" />
