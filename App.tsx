@@ -14,18 +14,36 @@ import Achievements from './components/Home/Achievements';
 import SEOFooterContent from './components/Home/SEOFooterContent';
 import Footer from './components/Layout/Footer';
 import BookingPage from './components/Booking/BookingPage';
+import IndiaPage from './components/Destinations/IndiaPage';
 import { PhoneCall } from 'lucide-react';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'booking'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'booking' | 'india'>('home');
+
+  const navigateTo = (page: 'home' | 'booking' | 'india') => {
+    setCurrentPage(page);
+    window.scrollTo(0, 0);
+  };
 
   if (currentPage === 'booking') {
     return (
       <div className="min-h-screen bg-[#0E1E2C]">
-        <Header />
+        <Header onNavigate={navigateTo} />
         {/* Booking page still needs padding to not be hidden by fixed header */}
-        <main className="pt-[135px] md:pt-[170px] bg-slate-50 rounded-t-3xl overflow-hidden min-h-screen">
-          <BookingPage onBack={() => setCurrentPage('home')} />
+        <main className="pt-[130px] md:pt-[122px] bg-slate-50 rounded-t-3xl overflow-hidden min-h-screen">
+          <BookingPage onBack={() => navigateTo('home')} />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentPage === 'india') {
+    return (
+      <div className="min-h-screen bg-[#0E1E2C]">
+        <Header onNavigate={navigateTo} />
+        <main className="pt-[130px] md:pt-[122px] bg-slate-50 min-h-screen">
+          <IndiaPage />
         </main>
         <Footer />
       </div>
@@ -34,11 +52,11 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#0E1E2C]">
-      <Header />
+      <Header onNavigate={navigateTo} />
       
-      {/* Adjusted padding-top for taller header (Mobile: 135px) */}
-      <main className="pt-[135px] md:pt-[170px] relative">
-        <Hero onSearch={() => setCurrentPage('booking')} />
+      {/* Adjusted padding-top for balanced header (Mobile: 130px, Desktop: 122px) */}
+      <main className="pt-[130px] md:pt-[122px] relative">
+        <Hero onSearch={() => navigateTo('booking')} />
         
         {/* Main Content Area */}
         <div className="relative z-20">
