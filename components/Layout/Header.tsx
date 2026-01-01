@@ -256,7 +256,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
         </div>
 
         {/* Main Header Container */}
-        <div className="max-w-[90rem] mx-auto px-4 py-1 md:py-1 flex flex-col md:flex-row md:items-center justify-between gap-1.5 md:gap-3 relative z-50">
+        <div className="max-w-[90rem] mx-auto px-4 pt-1 pb-0.5 md:py-1 flex flex-col md:flex-row md:items-center justify-between gap-1 md:gap-3 relative z-50">
           
           {/* Row 1: Logo, Menu, Actions */}
           <div className="flex items-center justify-between w-full md:w-auto">
@@ -346,8 +346,8 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
           </div>
 
           {/* Mobile Search Bar */}
-          <div className="w-full md:hidden mt-1">
-              <div className="flex items-center bg-white rounded-full px-4 py-2 shadow-lg">
+          <div className="w-full md:hidden mt-0.5 mb-0.5">
+              <div className="flex items-center bg-white rounded-full px-4 py-1.5 shadow-lg">
                   <Search className="w-4 h-4 text-slate-400 mr-2" />
                   <input 
                       type="text" 

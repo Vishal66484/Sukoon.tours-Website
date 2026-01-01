@@ -30,7 +30,7 @@ function App() {
       <div className="min-h-screen bg-[#0E1E2C]">
         <Header onNavigate={navigateTo} />
         {/* Booking page still needs padding to not be hidden by fixed header */}
-        <main className="pt-[130px] md:pt-[122px] bg-slate-50 rounded-t-3xl overflow-hidden min-h-screen">
+        <main className="pt-[112px] md:pt-[122px] bg-slate-50 rounded-t-3xl overflow-hidden min-h-screen">
           <BookingPage onBack={() => navigateTo('home')} />
         </main>
         <Footer />
@@ -42,7 +42,7 @@ function App() {
     return (
       <div className="min-h-screen bg-[#0E1E2C]">
         <Header onNavigate={navigateTo} />
-        <main className="pt-[130px] md:pt-[122px] bg-slate-50 min-h-screen">
+        <main className="pt-[112px] md:pt-[122px] bg-slate-50 min-h-screen">
           <IndiaPage />
         </main>
         <Footer />
@@ -54,8 +54,8 @@ function App() {
     <div className="min-h-screen bg-[#0E1E2C]">
       <Header onNavigate={navigateTo} />
       
-      {/* Adjusted padding-top for balanced header (Mobile: 130px, Desktop: 122px) */}
-      <main className="pt-[130px] md:pt-[122px] relative">
+      {/* Adjusted padding-top for balanced header (Mobile: 130px -> 112px, Desktop: 122px) */}
+      <main className="pt-[112px] md:pt-[122px] relative">
         <Hero onSearch={() => navigateTo('booking')} />
         
         {/* Main Content Area */}
