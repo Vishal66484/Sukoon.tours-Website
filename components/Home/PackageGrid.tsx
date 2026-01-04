@@ -2,11 +2,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { MOCK_PACKAGES } from '../../constants';
 import { Plane, ChevronLeft, ChevronRight, MessageCircle, Mail, BedDouble, Utensils, Camera, Bus } from 'lucide-react';
+import { useCurrency } from '../../context/CurrencyContext';
 
 const PackageGrid: React.FC = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const { formatPrice } = useCurrency();
 
   // Check scroll position to toggle arrows visibility
   const checkScroll = () => {
@@ -140,7 +142,7 @@ const PackageGrid: React.FC = () => {
                        <div className="flex justify-between items-end mb-3 gap-1">
                           <div>
                             <p className="text-[10px] text-slate-500 font-medium">Starts from</p>
-                            <h4 className="text-xl lg:text-lg font-bold text-slate-900 leading-tight">₹{pkg.price.toLocaleString()}</h4>
+                            <h4 className="text-xl lg:text-lg font-bold text-slate-900 leading-tight">{formatPrice(pkg.price)}</h4>
                           </div>
                           <span className="text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-1 rounded-full w-fit">{pkg.datesCount} Dates</span>
                        </div>

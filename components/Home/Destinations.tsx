@@ -1,12 +1,13 @@
 
 import React, { useState } from 'react';
 import { Star, Clock, Users } from 'lucide-react';
+import { useCurrency } from '../../context/CurrencyContext';
 
 const DOMESTIC_TOURS = [
   {
     id: 1,
     title: "The Royal Rajasthan",
-    price: "₹1,45,000",
+    price: 145000,
     days: "10 DAYS",
     type: "SMALL GROUP",
     rating: 4.9,
@@ -15,7 +16,7 @@ const DOMESTIC_TOURS = [
   {
     id: 2,
     title: "Serene Kerala",
-    price: "₹85,000",
+    price: 85000,
     days: "7 DAYS",
     type: "PRIVATE",
     rating: 4.8,
@@ -24,7 +25,7 @@ const DOMESTIC_TOURS = [
   {
     id: 3,
     title: "Majestic Ladakh",
-    price: "₹65,000",
+    price: 65000,
     days: "8 DAYS",
     type: "ADVENTURE",
     rating: 4.9,
@@ -33,7 +34,7 @@ const DOMESTIC_TOURS = [
   {
     id: 4,
     title: "Varanasi Spiritual",
-    price: "₹35,000",
+    price: 35000,
     days: "4 DAYS",
     type: "GUIDED",
     rating: 4.7,
@@ -45,7 +46,7 @@ const INTERNATIONAL_TOURS = [
   {
     id: 5,
     title: "Swiss Alps Adventure",
-    price: "₹2,45,000",
+    price: 245000,
     days: "8 DAYS",
     type: "GROUP",
     rating: 4.9,
@@ -54,7 +55,7 @@ const INTERNATIONAL_TOURS = [
   {
     id: 6,
     title: "Dubai Discovery",
-    price: "₹1,15,000",
+    price: 115000,
     days: "5 DAYS",
     type: "FAMILY",
     rating: 4.8,
@@ -63,7 +64,7 @@ const INTERNATIONAL_TOURS = [
   {
     id: 7,
     title: "Bali Bliss",
-    price: "₹95,000",
+    price: 95000,
     days: "6 DAYS",
     type: "HONEYMOON",
     rating: 4.9,
@@ -72,7 +73,7 @@ const INTERNATIONAL_TOURS = [
   {
     id: 8,
     title: "Singapore Highlights",
-    price: "₹1,25,000",
+    price: 125000,
     days: "5 DAYS",
     type: "CITY BREAK",
     rating: 4.7,
@@ -82,6 +83,7 @@ const INTERNATIONAL_TOURS = [
 
 const Destinations: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'domestic' | 'international'>('domestic');
+  const { formatPrice } = useCurrency();
   const tours = activeTab === 'domestic' ? DOMESTIC_TOURS : INTERNATIONAL_TOURS;
 
   return (
@@ -151,7 +153,7 @@ const Destinations: React.FC = () => {
                     {tour.title}
                   </h3>
                   <span className="text-[#0E1E2C] font-sans font-black text-xs md:text-lg whitespace-nowrap bg-slate-50 px-1.5 py-0.5 md:px-2 md:py-1 rounded-md md:rounded-lg w-fit">
-                    {tour.price}
+                    {formatPrice(tour.price)}
                   </span>
                 </div>
 

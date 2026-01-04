@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Clock, ArrowRight } from 'lucide-react';
+import { useCurrency } from '../../context/CurrencyContext';
 
 const PACKAGES = [
   {
@@ -8,7 +9,7 @@ const PACKAGES = [
     title: "Beautiful Bali Escape",
     location: "Indonesia",
     duration: "5 Nights / 6 Days",
-    price: "₹55,000",
+    price: 55000,
     image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=2000",
     places: ["Kuta", "Ubud", "Nusa Penida", "Tanah Lot"]
   },
@@ -17,7 +18,7 @@ const PACKAGES = [
     title: "Dazzling Dubai & Abu Dhabi",
     location: "UAE",
     duration: "5 Nights / 6 Days",
-    price: "₹58,000",
+    price: 58000,
     image: "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&q=80&w=2000",
     places: ["Burj Khalifa", "Desert Safari", "Ferrari World", "Grand Mosque"]
   },
@@ -26,7 +27,7 @@ const PACKAGES = [
     title: "Singapore & Malaysia Combo",
     location: "South East Asia",
     duration: "6 Nights / 7 Days",
-    price: "₹75,000",
+    price: 75000,
     image: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&q=80&w=2000",
     places: ["Sentosa", "Marina Bay", "Genting Highlands", "KL Tower"]
   },
@@ -35,7 +36,7 @@ const PACKAGES = [
     title: "Amazing Thailand",
     location: "Thailand",
     duration: "4 Nights / 5 Days",
-    price: "₹30,000",
+    price: 30000,
     image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=2000",
     places: ["Bangkok", "Pattaya", "Coral Island", "Safari World"]
   },
@@ -52,6 +53,7 @@ const PACKAGES = [
 
 const InternationalPackages: React.FC = () => {
   const [current, setCurrent] = useState(0);
+  const { formatPrice } = useCurrency();
 
   const nextSlide = () => {
     setCurrent((prev) => (prev + 1) % PACKAGES.length);
@@ -142,7 +144,7 @@ const InternationalPackages: React.FC = () => {
                     <div>
                         <p className="text-slate-400 text-[9px] md:text-[10px] font-black font-sans uppercase tracking-widest mb-0.5 md:mb-1">Starting From</p>
                         <div className="text-[#FFD801] font-black font-sans text-xl md:text-3xl">
-                          {pkg.price}
+                          {typeof pkg.price === 'number' ? formatPrice(pkg.price) : pkg.price}
                         </div>
                     </div>
                   </div>

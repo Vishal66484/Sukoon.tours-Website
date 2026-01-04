@@ -12,6 +12,18 @@ export interface TourPackage {
   location: string;
   rating?: number;
   reviews?: number;
+  // New International Specific Fields
+  continent?: string;
+  visaType?: 'Visa Free' | 'Visa on Arrival' | 'E-Visa' | 'Paper Visa';
+  withFlight?: boolean;
+  emi?: string;
+  offerPrice?: number;
+  code?: string;
+  tags?: string[];
+  departureText?: string;
+  highlights?: string;
+  citiesCount?: number;
+  days?: number;
 }
 
 export interface Destination {

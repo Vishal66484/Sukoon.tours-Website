@@ -1,89 +1,137 @@
 
 import React, { useState } from 'react';
 import { MapPin, Clock, Calendar, Star, ChevronDown, ChevronRight, Filter, Search, CheckCircle2, ArrowRight, Heart, Info, RefreshCw, MessageCircle, X } from 'lucide-react';
+import { useCurrency } from '../../context/CurrencyContext';
 
-// Mock Data specific for India Page
+// Real Data specific for India Page
 const INDIA_PACKAGES = [
   {
     id: 1,
-    title: "Jaipur Mandawa",
-    days: 4,
-    citiesCount: 2,
-    code: "RJM",
-    tags: ["GROUP TOUR", "RJM", "Family"],
-    price: 25000,
-    offerPrice: 25000,
-    emi: "843",
-    image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&q=80&w=800",
-    departureText: "3 Dates from 2 Cities",
-    highlights: "Mandawa Fort, Morarka Haveli, Podar Haveli Museum, Amber Fort, City Palace.",
-    rating: 5,
-    reviews: 47
+    title: "Kashmir - Paradise on Earth",
+    days: 7,
+    citiesCount: 4,
+    code: "DI-KSH",
+    tags: ["HONEYMOON", "Nature", "Popular"],
+    price: 42000,
+    offerPrice: 38500,
+    emi: "1,280",
+    image: "https://images.unsplash.com/photo-1598091383021-15ddea10925d?q=80&w=800&auto=format&fit=crop",
+    departureText: "Daily Departures",
+    highlights: "Shikara Ride on Dal Lake, Gulmarg Gondola (Phase 1), Pahalgam Valley, Sonmarg Day Trip, Houseboat Stay.",
+    rating: 4.9,
+    reviews: 2150
   },
   {
     id: 2,
-    title: "Simply Kashmir",
-    days: 7,
+    title: "Kerala - God's Own Country",
+    days: 6,
     citiesCount: 3,
-    code: "SK07",
-    tags: ["GROUP TOUR", "SK07", "Family Special"],
-    price: 45000,
-    offerPrice: 38990,
-    emi: "1,299",
-    // Iconic Shikara on Dal Lake - Updated to a clearer view
-    image: "https://images.unsplash.com/photo-1598091383021-15ddea10925d?q=80&w=800&auto=format&fit=crop",
-    departureText: "4 Dates from Srinagar",
-    highlights: "Shikara Ride included, Stay in Houseboat, Visit to Gulmarg Gondola.",
+    code: "DI-KER",
+    tags: ["Relaxing", "Family", "Nature"],
+    price: 35000,
+    offerPrice: 28990,
+    emi: "990",
+    image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=800&auto=format&fit=crop",
+    departureText: "Weekly Departures",
+    highlights: "Munnar Tea Gardens, Thekkady Spice Plantation, Alleppey Premium Houseboat, Kathakali Show.",
     rating: 4.8,
-    reviews: 1240
+    reviews: 1840
   },
   {
     id: 3,
-    title: "Highlights of Rajasthan",
-    days: 6,
-    citiesCount: 4,
-    code: "RJHL",
-    tags: ["GROUP TOUR", "RJHL", "Popular"],
-    price: 38000,
-    offerPrice: 35000,
-    emi: "1,180",
-    image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800",
-    departureText: "28 Dates from 3 Cities",
-    highlights: "Hawa Mahal, Jantar Mantar, Amer Fort, City Palace Museum.",
+    title: "Himachal - Manali & Shimla",
+    days: 7,
+    citiesCount: 3,
+    code: "DI-HIM",
+    tags: ["Adventure", "Snow", "Group"],
+    price: 28000,
+    offerPrice: 24500,
+    emi: "850",
+    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=800&auto=format&fit=crop",
+    departureText: "Every Saturday",
+    highlights: "Solang Valley Snow Point, Atal Tunnel, Shimla Mall Road, Kufri Fun World, River Rafting in Kullu.",
     rating: 4.7,
-    reviews: 457
+    reviews: 1560
   },
   {
     id: 4,
-    title: "Himachal Delight",
+    title: "Rajasthan - Royal Heritage",
     days: 8,
-    citiesCount: 3,
-    code: "HM08",
-    tags: ["GROUP TOUR", "HM08", "Nature"],
-    price: 35000,
-    offerPrice: 29990,
-    emi: "999",
-    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=800",
-    departureText: "Weekly Departures",
-    highlights: "Snow point visit in Manali, Shimla Mall Road, Volvo Bus experience.",
-    rating: 4.6,
-    reviews: 1500
+    citiesCount: 4,
+    code: "DI-RAJ",
+    tags: ["Culture", "History", "Premium"],
+    price: 45000,
+    offerPrice: 39990,
+    emi: "1,350",
+    image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?q=80&w=800&auto=format&fit=crop",
+    departureText: "2 Dates in Mar/Apr",
+    highlights: "Jaipur Amber Fort, Udaipur City Palace, Jodhpur Mehrangarh Fort, Jaisalmer Desert Safari & Camp.",
+    rating: 4.9,
+    reviews: 980
   },
   {
     id: 5,
-    title: "Andaman Island Special",
+    title: "Andaman - Beach & Bliss",
     days: 6,
-    citiesCount: 3,
-    code: "AN06",
-    tags: ["GROUP TOUR", "AN06", "Beach"],
-    price: 55000,
-    offerPrice: 48000,
-    emi: "1,600",
-    image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80&w=800",
-    departureText: "2 Dates from Port Blair",
-    highlights: "Havelock Island cruise, Radhanagar Beach sunset, Light & Sound show.",
+    citiesCount: 2,
+    code: "DI-AND",
+    tags: ["Beach", "Water Sports", "Summer"],
+    price: 52000,
+    offerPrice: 46500,
+    emi: "1,550",
+    image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=800&auto=format&fit=crop",
+    departureText: "Daily Flights",
+    highlights: "Havelock Radhanagar Beach, Cellular Jail Light & Sound, Elephant Beach Snorkeling, Neil Island.",
     rating: 4.8,
-    reviews: 900
+    reviews: 750
+  },
+  {
+    id: 6,
+    title: "Leh Ladakh - Adventure",
+    days: 7,
+    citiesCount: 3,
+    code: "DI-LEH",
+    tags: ["Adventure", "Biking", "Trending"],
+    price: 38000,
+    offerPrice: 32990,
+    emi: "1,100",
+    image: "https://images.unsplash.com/photo-1589802829985-817e51171b92?q=80&w=800&auto=format&fit=crop",
+    departureText: "May/June Special",
+    highlights: "Pangong Tso Lake Camping, Nubra Valley Double Hump Camel, Khardung La Pass, Magnetic Hill.",
+    rating: 4.9,
+    reviews: 1120
+  },
+  {
+    id: 7,
+    title: "North East - Seven Sisters",
+    days: 8,
+    citiesCount: 4,
+    code: "DI-NE",
+    tags: ["Nature", "Offbeat", "Scenic"],
+    price: 55000,
+    offerPrice: 49990,
+    emi: "1,700",
+    image: "https://images.unsplash.com/photo-1589041120903-b5f7cc74a05d?q=80&w=800&auto=format&fit=crop",
+    departureText: "Weekly Departures",
+    highlights: "Gangtok Tsomgo Lake, Darjeeling Toy Train (Joyride), Pelling Skywalk, Cherrapunji Root Bridges.",
+    rating: 4.7,
+    reviews: 620
+  },
+  {
+    id: 8,
+    title: "Char Dham Yatra",
+    days: 12,
+    citiesCount: 5,
+    code: "DI-CHD",
+    tags: ["Spiritual", "Senior Citizen", "Pilgrimage"],
+    price: 48000,
+    offerPrice: 42500,
+    emi: "1,450",
+    image: "https://images.unsplash.com/photo-1605649487215-285f338956ea?q=80&w=800&auto=format&fit=crop",
+    departureText: "May/June Registrations Open",
+    highlights: "Yamunotri, Gangotri, Kedarnath Trek/Heli, Badrinath Darshan, Haridwar Aarti.",
+    rating: 4.8,
+    reviews: 3500
   }
 ];
 
@@ -103,6 +151,7 @@ const STATE_IMAGES: Record<string, string> = {
 const IndiaPage: React.FC = () => {
   const [priceRange, setPriceRange] = useState(100000);
   const [selectedStates, setSelectedStates] = useState<string[]>([]);
+  const { formatPrice } = useCurrency();
 
   const toggleState = (state: string) => {
     if (selectedStates.includes(state)) {
@@ -158,16 +207,16 @@ const IndiaPage: React.FC = () => {
              {/* Styled like buttons in ref image */}
              <div className="flex flex-col gap-2">
                 <div className="border border-slate-300 rounded-[4px] px-3 py-2 text-[11px] font-bold text-slate-600 text-center cursor-pointer hover:border-[#FFD801] hover:text-black bg-white transition-colors">
-                   ₹ 23,000 - ₹ 40,000
+                   {formatPrice(20000)} - {formatPrice(35000)}
                 </div>
                 <div className="border border-slate-300 rounded-[4px] px-3 py-2 text-[11px] font-bold text-slate-600 text-center cursor-pointer hover:border-[#FFD801] hover:text-black bg-white transition-colors">
-                   ₹ 40,000 - ₹ 60,000
+                   {formatPrice(35000)} - {formatPrice(50000)}
                 </div>
                 <div className="border border-slate-300 rounded-[4px] px-3 py-2 text-[11px] font-bold text-slate-600 text-center cursor-pointer hover:border-[#FFD801] hover:text-black bg-white transition-colors">
-                   ₹ 60,000 - ₹ 80,000
+                   {formatPrice(50000)} - {formatPrice(80000)}
                 </div>
                 <div className="border border-slate-300 rounded-[4px] px-3 py-2 text-[11px] font-bold text-slate-600 text-center cursor-pointer hover:border-[#FFD801] hover:text-black bg-white transition-colors">
-                   ₹ 80,000 above
+                   {formatPrice(80000)} above
                 </div>
              </div>
           </div>
@@ -179,7 +228,7 @@ const IndiaPage: React.FC = () => {
                 <ChevronDown className="w-4 h-4 text-slate-400" />
              </div>
              <div className="space-y-2.5">
-               {['Pune (8)', 'Mumbai (23)', 'Delhi (15)', 'Ahmedabad (12)'].map((city, i) => (
+               {['Pune (12)', 'Mumbai (28)', 'Delhi (18)', 'Ahmedabad (15)'].map((city, i) => (
                  <label key={i} className="flex items-center gap-3 cursor-pointer group">
                    <div className="w-4 h-4 rounded-[3px] border border-slate-300 bg-white flex items-center justify-center group-hover:border-[#FFD801]"></div>
                    <span className="text-[13px] font-medium text-slate-700 group-hover:text-slate-900">{city}</span>
@@ -199,7 +248,7 @@ const IndiaPage: React.FC = () => {
                    <div className="w-4 h-4 rounded-[3px] border border-slate-300 bg-[#0E1E2C] flex items-center justify-center">
                      <CheckCircle2 className="w-3 h-3 text-white" />
                    </div>
-                   <span className="text-[13px] font-medium text-slate-900">India (44)</span>
+                   <span className="text-[13px] font-medium text-slate-900">India (50+)</span>
                 </label>
              </div>
           </div>
@@ -262,15 +311,15 @@ const IndiaPage: React.FC = () => {
           {/* Package List Header */}
           <div className="flex flex-col md:flex-row justify-between items-center mb-5 pb-4 border-b border-slate-200 gap-4">
             <div className="w-full md:w-auto">
-              <h2 className="text-[18px] font-black text-[#0E1E2C]">44 India Holiday Packages</h2>
-              <p className="text-slate-500 font-bold text-[11px] mt-0.5">Showing 1-{INDIA_PACKAGES.length} packages from 44 packages</p>
+              <h2 className="text-[18px] font-black text-[#0E1E2C]">{INDIA_PACKAGES.length} India Holiday Packages</h2>
+              <p className="text-slate-500 font-bold text-[11px] mt-0.5">Showing 1-{INDIA_PACKAGES.length} packages</p>
             </div>
             
             <div className="flex items-center gap-3 w-full md:w-auto">
                <div className="flex items-center gap-2">
                  <span className="text-[12px] font-bold text-slate-500">Sort by:</span>
                  <select className="px-3 py-1.5 bg-white border border-slate-300 rounded text-[12px] font-bold outline-none cursor-pointer w-full md:w-auto text-slate-700 hover:border-[#FFD801]">
-                    <option>Deals</option>
+                    <option>Recommended</option>
                     <option>Price: Low to High</option>
                     <option>Price: High to Low</option>
                     <option>Popularity</option>
@@ -297,7 +346,7 @@ const IndiaPage: React.FC = () => {
 
                 {/* Content (Middle) */}
                 <div className="flex-1 flex flex-col min-w-0 py-0.5">
-                   {/* Tags Row - Adjusted colors/fonts */}
+                   {/* Tags Row */}
                    <div className="flex flex-wrap items-center gap-2 mb-1.5">
                       <span className="text-[9px] font-bold uppercase tracking-wide px-1.5 py-[2px] rounded border border-orange-300 bg-orange-50 text-orange-600">
                           {pkg.tags[0]}
@@ -305,12 +354,14 @@ const IndiaPage: React.FC = () => {
                       <span className="text-[9px] font-bold uppercase tracking-wide px-1.5 py-[2px] rounded bg-orange-500 text-white border border-orange-500">
                           {pkg.code}
                       </span>
-                      <span className="text-[9px] font-bold uppercase tracking-wide px-1.5 py-[2px] rounded border border-pink-300 bg-pink-50 text-pink-600">
-                          {pkg.tags[2]}
-                      </span>
+                      {pkg.tags[2] && (
+                        <span className="text-[9px] font-bold uppercase tracking-wide px-1.5 py-[2px] rounded border border-pink-300 bg-pink-50 text-pink-600">
+                            {pkg.tags[2]}
+                        </span>
+                      )}
                    </div>
 
-                   {/* Title - Bold & Size Matched */}
+                   {/* Title */}
                    <h3 className="text-[18px] font-bold text-[#000000] group-hover:text-blue-700 transition-colors truncate mb-1 leading-tight">{pkg.title}</h3>
 
                    {/* Rating */}
@@ -320,6 +371,7 @@ const IndiaPage: React.FC = () => {
                              <Star key={i} className={`w-3 h-3 ${i < Math.floor(pkg.rating) ? 'fill-current' : 'text-slate-200'}`} />
                           ))}
                       </div>
+                      <span className="text-[10px] text-slate-400 font-bold">({pkg.reviews})</span>
                    </div>
 
                    {/* Inclusions */}
@@ -329,11 +381,11 @@ const IndiaPage: React.FC = () => {
                          <Info className="w-3 h-3 text-slate-400" />
                    </div>
 
-                   {/* Metrics Grid - Matching Ref Font/Colors */}
+                   {/* Metrics Grid */}
                    <div className="grid grid-cols-3 gap-2 border-t border-b border-slate-100 py-2.5 mb-2.5">
                       <div>
                          <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-wide mb-0.5">Days</span>
-                         <span className="font-bold text-[#000000] text-[13px]">{pkg.days}</span>
+                         <span className="font-bold text-[#000000] text-[13px]">{pkg.days} Days</span>
                       </div>
                       <div className="border-l border-slate-200 pl-3">
                          <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-wide mb-0.5">Destinations</span>
@@ -351,7 +403,6 @@ const IndiaPage: React.FC = () => {
                       <p className="text-[11px] text-slate-600 inline line-clamp-1">
                          {pkg.highlights} 
                       </p>
-                      <span className="text-[11px] text-slate-400 underline ml-1 cursor-pointer hover:text-slate-600">More</span>
                    </div>
                 </div>
 
@@ -359,8 +410,8 @@ const IndiaPage: React.FC = () => {
                 <div className="md:w-[220px] shrink-0 flex flex-col justify-between md:border-l border-slate-100 md:pl-5 pt-4 md:pt-0 border-t md:border-t-0">
                     <div className="text-left md:text-right">
                         <span className="text-[10px] font-medium text-slate-400 block">Starts from</span>
-                        <h3 className="text-[22px] font-bold text-[#000000] leading-none my-0.5">₹{pkg.offerPrice.toLocaleString()}</h3>
-                        <span className="text-[10px] text-slate-400 block font-medium">per person on twin sharing</span>
+                        <h3 className="text-[22px] font-bold text-[#000000] leading-none my-0.5">{formatPrice(pkg.offerPrice)}</h3>
+                        <span className="text-[10px] text-slate-400 block font-medium">per person</span>
                         <div className="mt-1">
                            <span className="text-[11px] font-bold text-slate-700 underline decoration-dotted cursor-pointer">EMI from ₹{pkg.emi}/mo</span>
                         </div>
@@ -380,7 +431,7 @@ const IndiaPage: React.FC = () => {
                           <RefreshCw className="w-3 h-3" /> Compare
                        </button>
                        <button className="flex items-center gap-1.5 text-[11px] font-bold hover:text-[#000000] transition-colors">
-                          <MessageCircle className="w-3 h-3" /> Enquire Now
+                          <MessageCircle className="w-3 h-3" /> Enquire
                        </button>
                     </div>
                 </div>

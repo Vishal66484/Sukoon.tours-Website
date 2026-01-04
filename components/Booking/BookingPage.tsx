@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { ChevronLeft, CreditCard, ShieldCheck, Plane, Hotel, Utensils } from 'lucide-react';
+import { useCurrency } from '../../context/CurrencyContext';
 
 interface BookingPageProps {
   onBack: () => void;
@@ -8,6 +9,12 @@ interface BookingPageProps {
 
 const BookingPage: React.FC<BookingPageProps> = ({ onBack }) => {
   const [step, setStep] = useState(1);
+  const { formatPrice } = useCurrency();
+  
+  // Example data
+  const basePrice = 125000;
+  const gst = basePrice * 0.05;
+  const total = basePrice + gst;
 
   return (
     <div className="min-h-screen bg-[#f8fafc] pt-24 pb-20 px-4">
@@ -79,15 +86,15 @@ const BookingPage: React.FC<BookingPageProps> = ({ onBack }) => {
               <div className="space-y-4 mb-8">
                 <div className="flex justify-between text-sm">
                   <span className="text-slate-400 font-bold uppercase text-[10px]">Package Price</span>
-                  <span className="font-black">₹1,25,000</span>
+                  <span className="font-black">{formatPrice(basePrice)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-slate-400 font-bold uppercase text-[10px]">GST (5%)</span>
-                  <span className="font-black">₹6,250</span>
+                  <span className="font-black">{formatPrice(gst)}</span>
                 </div>
                 <div className="border-t border-slate-100 pt-4 flex justify-between">
                   <span className="text-slate-900 font-black uppercase text-xs">Total Amount</span>
-                  <span className="font-black text-2xl text-blue-600">₹1,31,250</span>
+                  <span className="font-black text-2xl text-blue-600">{formatPrice(total)}</span>
                 </div>
               </div>
 
